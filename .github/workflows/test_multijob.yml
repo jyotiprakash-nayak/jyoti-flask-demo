@@ -1,0 +1,42 @@
+name: deploy_dev1
+on: 
+  workflow_dispatch:
+    inputs:
+      job_nme:
+        type: choice
+        description: 'Select Job name'
+        required: true
+        options:
+          - job1
+          - job2
+          - job3 
+      environment:
+        type: choice
+        description: 'Select environment'
+        required: true
+        options:
+          - dev
+          - qa
+          - prod
+
+jobs:
+  job1:
+    if: ${{ github.event.inputs.job_nme == 'job1' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: echo "Hello GitHub Actions! - job1"
+
+  job2:
+    if: ${{ github.event.inputs.job_nme == 'job2' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: echo "Hello GitHub Actions! - job2"
+
+  job3:
+    if: ${{ github.event.inputs.job_nme == 'job3' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: my-step
+        run: echo "Hello GitHub Actions! - job3"
